@@ -1,110 +1,158 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
 const projects = [
   {
     id: 1,
     title: "EpiAI – Epilepsy Detection System",
-    description: "AI system for epilepsy detection using EEG and Bi-directional CNN-LSTM model. Includes hospital dashboard for patient management.",
+    description: "AI-based system for epilepsy detection using EEG data with Bi-directional CNN-LSTM model and hospital dashboard for patient management.",
     period: "Oct 2024 – Present",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&h=400",
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
     categories: ["ai", "ml"],
-    tags: ["EEG", "Bi-CNN-LSTM", "Medical AI"],
+    tags: ["Deep Learning", "EEG Analysis", "Medical AI"],
   },
   {
     id: 2,
     title: "Bright Brain – AI Educational Platform",
-    description: "Interactive platform for children with AI-generated stories, games, and GPT narration.",
+    description: "Interactive educational platform for children aged 2-10 with AI-generated stories, learning games, and text-to-speech narration.",
     period: "May 2025 – Present",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&h=400",
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
     categories: ["ai"],
-    tags: ["GPT", "Text-to-Speech", "React"],
+    tags: ["React", "GPT Integration", "EdTech"],
   },
   {
     id: 3,
-    title: "Brain Stroke Prediction System",
-    description: "Deep learning model for early stroke detection using medical report data (heartbeat, pressure, etc.).",
-    period: "Apr 2025 – June 2025",
-    image: "https://images.unsplash.com/photo-1603398938378-3dd4b9a54b83?auto=format&fit=crop&w=800&h=400",
-    categories: ["ml"],
-    tags: ["Medical AI", "Deep Learning", "Stroke Prediction"],
+    title: "Self-Driving Car System",
+    description: "Complete autonomous driving solution with YOLOv7 object detection for 46 types of road signs and real-time street prediction.",
+    period: "Mar 2022 – Nov 2022",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+    categories: ["cv", "ai"],
+    tags: ["YOLO", "Computer Vision", "Real-time AI"],
   },
   {
     id: 4,
-    title: "Drug-Target Interaction Classifier",
-    description: "ML/DL models for classifying drug-protein interaction using molecular fingerprints and sequences.",
-    period: "Oct 2023 – Feb 2024",
-    image: "https://images.unsplash.com/photo-1588776814546-2d547b2f60b5?auto=format&fit=crop&w=800&h=400",
-    categories: ["ml"],
-    tags: ["Bioinformatics", "Classification", "Drug Discovery"],
+    title: "COVID-19 Detection System",
+    description: "Transfer learning model achieving 99.6% accuracy in detecting COVID-19 from CT scan images using state-of-the-art pre-trained models.",
+    period: "Mar 2022 – June 2022",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+    categories: ["ml", "cv"],
+    tags: ["Transfer Learning", "Medical AI", "99.6% Accuracy"],
   },
   {
     id: 5,
-    title: "Food Ingredients Forecasting",
-    description: "Forecast food ingredient needs for restaurants using real datasets and time series analysis.",
-    period: "Jul 2023 – Nov 2023",
-    image: "https://images.unsplash.com/photo-1512058564366-c9e3c8e57f56?auto=format&fit=crop&w=800&h=400",
+    title: "Crime Rate Prediction Model",
+    description: "LSTM model for predicting crime rates and types in Chicago using time series analysis of historical crime data.",
+    period: "May 2023 – June 2024",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
     categories: ["ml"],
-    tags: ["Forecasting", "Time Series", "Data Analysis"],
+    tags: ["LSTM", "Time Series", "Predictive Analytics"],
   },
   {
     id: 6,
-    title: "Horse Detection & Tracking System",
-    description: "YOLOv7 model for detecting and tracking horses during races in real time.",
-    period: "Jul 2023 – Dec 2023",
-    image: "https://images.unsplash.com/photo-1553284966-19b8815c7817?auto=format&fit=crop&w=800&h=400",
+    title: "Horse Detection & Tracking",
+    description: "YOLOv7-based system for detecting and tracking horses during races with real-time performance analysis.",
+    period: "July 2023 – Dec 2023",
+    image: "https://images.unsplash.com/photo-1553284966-19b8815c7817?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
     categories: ["cv"],
-    tags: ["YOLOv7", "Object Detection", "Real-time AI"],
-  },
-  {
-    id: 7,
-    title: "Human Heartbeat Recognition",
-    description: "Classify ECG signals using LightGBM for accurate heartbeat detection.",
-    period: "Dec 2022 – May 2023",
-    image: "https://images.unsplash.com/photo-1603395295302-c99f9283c438?auto=format&fit=crop&w=800&h=400",
-    categories: ["ml"],
-    tags: ["ECG", "LightGBM", "Signal Classification"],
-  },
-  {
-    id: 8,
-    title: "Crime Rate Prediction Model",
-    description: "Time series LSTM model to forecast crime rates and types based on Chicago data.",
-    period: "May 2023 – June 2024",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&h=400",
-    categories: ["ml"],
-    tags: ["LSTM", "Time Series", "Crime Prediction"],
-  },
-  {
-    id: 9,
-    title: "Self-Driving Car System",
-    description: "YOLOv7 object detection and multi-task learning for traffic lights and signs on Riyadh streets.",
-    period: "Mar 2022 – Nov 2022",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&h=400",
-    categories: ["cv"],
-    tags: ["YOLOv7", "Autonomous Driving", "Multi-task Learning"],
-  },
-  {
-    id: 10,
-    title: "COVID-19 Detection from CT Scans",
-    description: "Transfer learning model with 99.6% accuracy using chest CT scan images.",
-    period: "Mar 2022 – Jun 2022",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=800&h=400",
-    categories: ["cv", "ml"],
-    tags: ["Medical Imaging", "Transfer Learning", "99.6% Accuracy"],
-  },
-  {
-    id: 11,
-    title: "Signature Verification System",
-    description: "Academic research and model design for verifying handwritten signatures using deep learning.",
-    period: "Jan 2022 – Mar 2022",
-    image: "https://images.unsplash.com/photo-1588776814546-2d547b2f60b5?auto=format&fit=crop&w=800&h=400",
-    categories: ["ml"],
-    tags: ["Signature Recognition", "DL Research"],
-  },
-  {
-    id: 12,
-    title: "Deepfake Detection System",
-    description: "98% accurate classifier using MISO model to detect deepfake videos from Kaggle dataset.",
-    period: "Sep 2021 – Nov 2021",
-    image: "https://images.unsplash.com/photo-1608746822660-21a55bdf2a59?auto=format&fit=crop&w=800&h=400",
-    categories: ["cv", "ai"],
-    tags: ["Deepfake", "Video Classification", "MISO Model"],
+    tags: ["YOLOv7", "Object Tracking", "Sports Analytics"],
   },
 ];
+
+const filters = [
+  { id: "all", label: "All Projects" },
+  { id: "ai", label: "AI Development" },
+  { id: "ml", label: "Machine Learning" },
+  { id: "cv", label: "Computer Vision" },
+];
+
+export default function ProjectsSection() {
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filteredProjects = projects.filter(project =>
+    activeFilter === "all" || project.categories.includes(activeFilter)
+  );
+
+  return (
+    <section id="projects" className="py-20 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Featured Projects</h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Showcasing innovative AI solutions that push the boundaries of technology and create real-world impact.
+          </p>
+        </motion.div>
+
+        {/* Project Filters */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {filters.map((filter) => (
+            <Button
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              variant={activeFilter === filter.id ? "default" : "outline"}
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
+                activeFilter === filter.id
+                  ? "gradient-bg text-white"
+                  : "bg-white text-slate-600 hover:bg-blue-50"
+              }`}
+            >
+              {filter.label}
+            </Button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="relative overflow-hidden rounded-t-2xl">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="text-sm font-medium">{project.period}</div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-slate-900 mb-2">{project.title}</h3>
+                  <p className="text-slate-600 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  <button className="text-blue-600 font-medium hover:text-blue-700 transition-colors flex items-center gap-2 group">
+                    Learn More
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  );
+}
