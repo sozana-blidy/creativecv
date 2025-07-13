@@ -3,10 +3,10 @@ import { Progress } from "@/components/ui/progress";
 import { Brain, Database, Code, Server, Cpu, Zap } from "lucide-react";
 
 const skills = [
-  { name: "Python & Machine Learning", level: 90, color: "from-blue-600 to-violet-600" },
+  { name: "Python & Machine Learning", level: 95, color: "from-blue-600 to-violet-600" },
   { name: "Deep Learning (TensorFlow, Keras)", level: 90, color: "from-violet-600 to-cyan-600" },
   { name: "Computer Vision", level: 88, color: "from-cyan-600 to-blue-600" },
-  { name: "Natural Language Processing", level: 80, color: "from-blue-600 to-violet-600" },
+  { name: "Natural Language Processing", level: 85, color: "from-blue-600 to-violet-600" },
   { name: "Django & Web Development", level: 82, color: "from-violet-600 to-cyan-600" },
   { name: "SQL & Database Management", level: 80, color: "from-cyan-600 to-blue-600" },
 ];
