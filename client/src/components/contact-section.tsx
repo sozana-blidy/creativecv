@@ -85,7 +85,10 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <div className="font-medium text-slate-900">Email</div>
-                    <div className="text-slate-600">sozana.blidy@email.com</div>
+                     <a href="mailto:sozanablidy@gmail.com" className="text-blue-600 hover:underline">
+                    sozanablidy@gmail.com
+                  </a>
+
                   </div>
                 </div>
                 
@@ -95,7 +98,10 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <div className="font-medium text-slate-900">LinkedIn</div>
-                    <div className="text-slate-600">linkedin.com/in/sozana-blidy</div>
+                    <a href="https://www.linkedin.com/in/sozana-blidy-24165a1a3" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                  linkedin.com/in/sozana-blidy-24165a1a3
+                </a>
+
                   </div>
                 </div>
                 
@@ -105,7 +111,10 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <div className="font-medium text-slate-900">GitHub</div>
-                    <div className="text-slate-600">github.com/sozana-blidy</div>
+                     <a href="https://github.com/sozana-blidy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                      github.com/sozana-blidy
+                    </a>
+
                   </div>
                 </div>
               </div>
@@ -114,10 +123,17 @@ export default function ContactSection() {
             <div className="bg-white p-6 rounded-2xl shadow-lg">
               <h4 className="font-semibold text-slate-900 mb-4">Download Resume</h4>
               <p className="text-slate-600 mb-4">Get a detailed overview of my experience and skills.</p>
-              <Button className="gradient-bg text-white">
-                <Download className="w-4 h-4 mr-2" />
-                Download CV
-              </Button>
+            <a
+            href="/Sozana_Blidy_CV.pdf"
+            download
+            className="inline-block"
+          >
+            <Button className="gradient-bg text-white">
+              <Download className="w-4 h-4 mr-2" />
+              Download CV
+            </Button>
+          </a>
+
             </div>
           </motion.div>
 
